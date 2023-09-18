@@ -1,0 +1,68 @@
+Déroulement de l'exécution de l'algorithme avec n = 20:
+
+    Initialisation du tableau A avec des valeurs booléennes toutes à vrai pour les indices de 2 à 20.
+    A = [vrai, vrai, vrai, vrai, vrai, vrai, vrai, vrai, vrai, vrai, vrai, vrai, vrai, vrai, vrai, vrai, vrai, vrai, vrai, vrai]
+
+    Première boucle externe:
+
+        i = 2
+            Vérification de la condition A[2] est vrai, ce qui est le cas.
+            Deuxième boucle interne:
+                j = i^2 = 4
+                    A[4] := faux
+                j = i^2 + i = 6
+                    A[6] := faux
+                j = i^2 + 2i = 8
+                    A[8] := faux
+                j = i^2 + 3i = 10
+                    A[10] := faux
+                j = i^2 + 4i = 12
+                    A[12] := faux
+                j = i^2 + 5i = 14
+                    A[14] := faux
+                j = i^2 + 6i = 16
+                    A[16] := faux
+                j = i^2 + 7i = 18
+                    A[18] := faux
+                j = i^2 + 8i = 20
+                    A[20] := faux
+        i = 3
+            Vérification de la condition A[3] est vrai, ce qui est le cas.
+            Deuxième boucle interne:
+                j = i^2 = 9
+                    A[9] := faux
+                j = i^2 + i = 12
+                    A[12] := faux
+                j = i^2 + 2i = 15
+                    A[15] := faux
+                j = i^2 + 3i = 18
+                    A[18] := faux
+        i = 4
+            Vérification de la condition A[4] est vrai, ce qui n'est pas le cas (A[4] est faux car A[4] := faux à l'étape précédente).
+        i = 5
+            Vérification de la condition A[5] est vrai, ce qui est le cas.
+            Deuxième boucle interne:
+                j = i^2 = 25, mais n = 20, donc la deuxième boucle interne s'arrête car j dépasse n.
+        Les indices après vont donner soit faux soit vrai mais l'indice sera supérieur à n donc on ne les considère pas.
+        Les indices pour lesquels A[i] est vrai correspondent aux nombres premiers dans la plage de 2 à n (dans ce cas, 2, 3, 5, 7, 11, 13, 17, 19).
+
+        - Pourquoi la boucle intérieure (la deuxième boucle) commence à i^2 et pas à 0 ou à i ?
+        La boucle intérieure commence à i^2 plutôt qu'à 0 ou à i pour des raisons d'efficacité.
+        L'algorithme utilise le fait que tous les multiples de i inférieurs à i^2 ont déjà été marqués comme non premiers par les itérations précédentes de la boucle extérieure.
+        En commençant à i^2, nous évitons de marquer ces multiples une deuxième fois.
+        La première boucle s'exécute jusqu'à √n parce que si n a un diviseur supérieur à √n, alors il doit également avoir un diviseur inférieur à √n. Par conséquent, si nous marquons tous les multiples de chaque nombre premier inférieur ou égal à √n comme non premiers, les seuls nombres premiers restants seront ceux supérieurs à √n.
+
+        - Pourquoi la première boucle s’exécute jusqu’à √n? Que faites-vous si √n n’est pas un entier ?
+        La première boucle s'exécute jusqu'à √n pour optimiser l'algorithme.
+        Après √n, tous les multiples d'un nombre i sont déjà marqués comme faux.
+        Donc, il n'est pas nécessaire de continuer la recherche.
+        Si √n n'est pas un entier, nous prenons la partie entière de √n et l'arrondissons vers le bas.
+        Par exemple, si n = 20, √n est environ 4,472, donc la boucle extérieure s'exécutera jusqu'à 4.
+        Les nombres premiers jusqu'à 4 sont déjà suffisants pour filtrer les multiples restants.
+
+
+        Dans cette nouvelle version, la première partie du code vérifie si i est égal à 2. Si c'est le cas, alors nous effectuons une boucle distincte pour les multiples de 2. Sinon, nous utilisons la boucle interne avec un pas de 2i.
+
+        Cela permet de sauter tous les multiples pairs (à l'exception du nombre 2 lui-même) dans la boucle interne, ce qui accélère considérablement l'exécution de l'algorithme.
+
+        Assurez-vous de mettre à jour cette modification dans la fonction Travail de votre programme.
